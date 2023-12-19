@@ -44,21 +44,22 @@ def main():
         last = None
         for number in buffer:
             if last is not None:
-                result = last["operation"].value(int(last["value"]), int(number["value"]))
+                result = last["operation"].value(
+                    float(last["value"]), float(number["value"])
+                )
                 if number["operation"] == Operations.END:
                     continue
             else:
                 last = number
                 continue
-        
+
         n_current.set(result)
         return result
-    
+
     def clear():
         print("clear")
         buffer = []
         n_current.set("0")
-        
 
     function_l = [add_number, save_buffer, calc, clear]
 
