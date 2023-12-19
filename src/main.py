@@ -118,6 +118,9 @@ def render_buttons(window, number_field, functions):
             btn_frame, text="9", command=lambda: functions[0]("9", number_field)
         ),
         ttk.Button(
+            btn_frame, text=".", command=lambda: functions[0](".", number_field)
+        ),
+        ttk.Button(
             btn_frame,
             text="AC",
             command=lambda: functions[3](),
