@@ -56,12 +56,15 @@ def main():
         n_current.set(result)
         return result
 
-    def clear():
+    def all_clear():
         print("clear")
         buffer = []
         n_current.set("0")
+        
+    def clear():
+        n_current.set("0")
 
-    function_l = [add_number, save_buffer, calc, clear]
+    function_l = [add_number, save_buffer, calc, all_clear, clear]
 
     number_field = render_number_field(root, n_current)
     render_buttons(root, number_field, function_l)
@@ -124,6 +127,11 @@ def render_buttons(window, number_field, functions):
             btn_frame,
             text="AC",
             command=lambda: functions[3](),
+        ),
+        ttk.Button(
+            btn_frame,
+            text="C",
+            command=lambda: functions[4](),
         ),
         ttk.Button(
             btn_frame,
