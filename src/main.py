@@ -97,36 +97,37 @@ def render_buttons(window: tk.Tk, number_field: ttk.Label, functions: List[Calla
     btn_frame = tk.Frame(window)
     btn_frame.pack()
 
+    # TODO: Move all non-number (comma excluded) buttons to their seperate frame.
     buttons = [
         ttk.Button(
-            btn_frame, text="0", command=lambda: functions[0]("0", number_field)
-        ),
-        ttk.Button(
-            btn_frame, text="1", command=lambda: functions[0]("1", number_field)
-        ),
-        ttk.Button(
-            btn_frame, text="2", command=lambda: functions[0]("2", number_field)
-        ),
-        ttk.Button(
-            btn_frame, text="3", command=lambda: functions[0]("3", number_field)
+            btn_frame, text="7", command=lambda: functions[0]("7", number_field)
         ),
         ttk.Button(
             btn_frame, text="4", command=lambda: functions[0]("4", number_field)
         ),
         ttk.Button(
-            btn_frame, text="5", command=lambda: functions[0]("5", number_field)
-        ),
-        ttk.Button(
-            btn_frame, text="6", command=lambda: functions[0]("6", number_field)
-        ),
-        ttk.Button(
-            btn_frame, text="7", command=lambda: functions[0]("7", number_field)
+            btn_frame, text="1", command=lambda: functions[0]("1", number_field)
         ),
         ttk.Button(
             btn_frame, text="8", command=lambda: functions[0]("8", number_field)
         ),
         ttk.Button(
+            btn_frame, text="5", command=lambda: functions[0]("5", number_field)
+        ),
+        ttk.Button(
+            btn_frame, text="2", command=lambda: functions[0]("2", number_field)
+        ),
+        ttk.Button(
             btn_frame, text="9", command=lambda: functions[0]("9", number_field)
+        ),
+        ttk.Button(
+            btn_frame, text="6", command=lambda: functions[0]("6", number_field)
+        ),
+        ttk.Button(
+            btn_frame, text="3", command=lambda: functions[0]("3", number_field)
+        ),
+        ttk.Button(
+            btn_frame, text="0", command=lambda: functions[0]("0", number_field)
         ),
         ttk.Button(
             btn_frame, text=".", command=lambda: functions[0](".", number_field)
