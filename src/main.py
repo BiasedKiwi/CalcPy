@@ -76,7 +76,10 @@ def main():
     root.mainloop()
 
 
-def render_number_field(window: tk.Tk, buffer: List[Dict[str, str | Operations | int]]) -> ttk.Label:
+# pylint: disable=line-too-long
+def render_number_field(
+    window: tk.Tk, buffer: List[Dict[str, str | Operations | int]]
+) -> ttk.Label:
     number_frame = tk.Frame(window)
     number_frame.pack()
 
@@ -86,6 +89,7 @@ def render_number_field(window: tk.Tk, buffer: List[Dict[str, str | Operations |
     return number_field
 
 
+# pylint: disable=unnecessary-lambda
 def render_buttons(window: tk.Tk, number_field: ttk.Label, functions: List[Callable]):
     current_row = 0
     current_column = 0
