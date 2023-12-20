@@ -97,7 +97,7 @@ def render_buttons(window: tk.Tk, number_field: ttk.Label, functions: List[Calla
     btn_frame = tk.Frame(window)
     btn_frame.pack()
 
-    # TODO: Move all non-number (comma excluded) buttons to their seperate frame.
+    # TODO: #1 Move all non-number (comma excluded) buttons to their seperate frame.
     buttons = [
         ttk.Button(
             btn_frame, text="7", command=lambda: functions[0]("7", number_field)
