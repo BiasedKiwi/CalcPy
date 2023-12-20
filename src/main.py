@@ -1,9 +1,12 @@
+import operator
+
+from typing import *
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
-from constants import *
 from enum import Enum
-import operator
+
+from constants import *
 
 
 class Operations(Enum):
@@ -22,13 +25,13 @@ def main():
     n_current = tk.StringVar(root, "0")
     buffer = []
 
-    def add_number(n, n_field: ttk.Label):
+    def add_number(n: str, n_field: ttk.Label):
         if str(n_field.cget("text")) == "0":
             n_current.set(n)
         else:
             n_current.set(n_current.get() + n)
 
-    def save_buffer(n_field, op: Operations):
+    def save_buffer(n_field: tk.Label, op: Operations):
         try:
             id = buffer[-1]["id"] + 1
         except IndexError:
@@ -38,7 +41,7 @@ def main():
         n_current.set("0")
         print(buffer)
 
-    def calc(n_field):
+    def calc(n_field: tk.Label):
         save_buffer(n_field, Operations.END)
         result = 0
         last = None
@@ -59,10 +62,8 @@ def main():
     def all_clear():
         nonlocal buffer
 
-        print("clear")
         buffer = []
         n_current.set("0")
-        print(buffer)
 
     def clear():
         n_current.set("0")
@@ -75,7 +76,7 @@ def main():
     root.mainloop()
 
 
-def render_number_field(window, buffer):
+def render_number_field(window: tk.Tk, buffer: List[Dict[str, str | Operations | int]]) -> ttk.Label:
     number_frame = tk.Frame(window)
     number_frame.pack()
 
@@ -85,7 +86,7 @@ def render_number_field(window, buffer):
     return number_field
 
 
-def render_buttons(window, number_field, functions):
+def render_buttons(window: tk.Tk, number_field: ttk.Label, functions: List[Callable]):
     current_row = 0
     current_column = 0
 
