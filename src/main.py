@@ -57,10 +57,13 @@ def main():
         return result
 
     def all_clear():
+        nonlocal buffer
+
         print("clear")
         buffer = []
         n_current.set("0")
-        
+        print(buffer)
+
     def clear():
         n_current.set("0")
 
