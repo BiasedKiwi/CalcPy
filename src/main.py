@@ -47,7 +47,9 @@ def main():
                 cached["id"] = 0
                 buffer = [cached]
             else:
-                buffer.append({"value": n_field.cget("text"), "operation": op, "id": id})
+                buffer.append(
+                    {"value": n_field.cget("text"), "operation": op, "id": id}
+                )
         except IndexError:
             buffer.append({"value": n_field.cget("text"), "operation": op, "id": id})
         n_current.set("0")
@@ -69,7 +71,13 @@ def main():
                 continue
 
         n_current.set(result)
-        buffer.append({"value": str(result), "operation": Operations.RESULT, "id": len(buffer) + 1})  # Convert `result` to string for good measure
+        buffer.append(
+            {
+                "value": str(result),
+                "operation": Operations.RESULT,
+                "id": len(buffer) + 1,
+            }
+        )  # Convert `result` to string for good measure
         return result
 
     def all_clear():
