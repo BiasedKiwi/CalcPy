@@ -15,6 +15,7 @@ class Operations(Enum):
     PRODUCT = operator.mul
     QUOTIENT = operator.truediv
     END = None  # Last number
+    RESULT = None
 
 
 def main():
@@ -32,12 +33,25 @@ def main():
             n_current.set(n_current.get() + n)
 
     def save_buffer(n_field: tk.Label, op: Operations):
+        nonlocal buffer
+
         try:
             id = buffer[-1]["id"] + 1
         except IndexError:
             id = 0
 
-        buffer.append({"value": n_field.cget("text"), "operation": op, "id": id})
+        try:  # There's probably a better way to do this
+            if buffer[-1]["operation"] == Operations.RESULT:
+                cached = buffer[-1]
+                cached["operation"] = op
+                cached["id"] = 0
+                buffer = [cached]
+            else:
+                buffer.append(
+                    {"value": n_field.cget("text"), "operation": op, "id": id}
+                )
+        except IndexError:
+            buffer.append({"value": n_field.cget("text"), "operation": op, "id": id})
         n_current.set("0")
         print(buffer)
 
@@ -57,6 +71,13 @@ def main():
                 continue
 
         n_current.set(result)
+        buffer.append(
+            {
+                "value": str(result),
+                "operation": Operations.RESULT,
+                "id": len(buffer) + 1,
+            }
+        )  # Convert `result` to string for good measure
         return result
 
     def all_clear():
@@ -97,7 +118,6 @@ def render_buttons(window: tk.Tk, number_field: ttk.Label, functions: List[Calla
     btn_frame = tk.Frame(window)
     btn_frame.pack()
 
-    # TODO: Move all non-number (comma excluded) buttons to their seperate frame.
     buttons = [
         ttk.Button(
             btn_frame, text="7", command=lambda: functions[0]("7", number_field)
