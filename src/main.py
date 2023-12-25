@@ -200,4 +200,3 @@ def render_buttons(window: tk.Tk, number_field: ttk.Label, functions: List[Calla
 
 if __name__ == "__main__":
     main()
- 
