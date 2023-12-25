@@ -14,6 +14,7 @@ class Operations(Enum):
     DIFF = operator.sub
     PRODUCT = operator.mul
     QUOTIENT = operator.truediv
+    EXP = operator.pow
     END = None  # Last number
     RESULT = None
 
@@ -181,6 +182,11 @@ def render_buttons(window: tk.Tk, number_field: ttk.Label, functions: List[Calla
             btn_frame,
             text="/",
             command=lambda: functions[1](number_field, Operations.QUOTIENT),
+        ),
+        ttk.Button(
+            btn_frame,
+            text="^",
+            command=lambda: functions[1](number_field, Operations.EXP),
         ),
         ttk.Button(btn_frame, text="=", command=lambda: functions[2](number_field)),
     ]
